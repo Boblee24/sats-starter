@@ -6,7 +6,7 @@ export default tseslint.config(
   {
     rules: {
       // Logging goes through @sats/core/log only (rule 3 in CLAUDE.md).
-      "no-console": ["error", { allow: [] }],
+      "no-console": "error",
       "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
     },
   },

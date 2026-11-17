@@ -1,0 +1,64 @@
+@import "tailwindcss";
+@source "../../../packages/ui/src";
+
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --surface-2: #efece4;
+  --fg: #16140f;
+  --muted: #5c574c;
+  --border: #d9d4c7;
+  --accent: #f7931a; /* bitcoin orange */
+  --accent-fg: #16140f;
+  --ok: #138a36;
+  --danger: #c0262d;
+  --warn: #ffcf33;
+  --focus: #1d4ed8;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12110e;
+    --surface: #1c1a16;
+    --surface-2: #29261f;
+    --fg: #f4f1ea;
+    --muted: #b3ac9c;
+    --border: #3a362d;
+    --accent: #f7931a;
+    --accent-fg: #12110e;
+    --ok: #3ccf6a;
+    --danger: #ef4c53;
+    --warn: #ffcf33;
+    --focus: #8fb3ff;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #12110e;
+  --surface: #1c1a16;
+  --surface-2: #29261f;
+  --fg: #f4f1ea;
+  --muted: #b3ac9c;
+  --border: #3a362d;
+  --accent: #f7931a;
+  --accent-fg: #12110e;
+  --ok: #3ccf6a;
+  --danger: #ef4c53;
+  --warn: #ffcf33;
+  --focus: #8fb3ff;
+  color-scheme: dark;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+}
