@@ -1,0 +1,34 @@
+# docker compose up                 -> web only (Konfam-style apps, no database)
+# docker compose --profile db up    -> web + PostGIS (Kàddu, NdoxWatch)
+services:
+  web:
+    build: .
+    ports: ["3000:3000"]
+    env_file:
+      - path: .env.local
+        required: false
+    environment:
+      DEMO_MODE: ${DEMO_MODE:-1}
+      # No Gemini key? Fixtures keep the demo working offline.
+      AI_MOCK: ${AI_MOCK:-1}
+      # Inside compose the database host is "db", not localhost.
+      DATABASE_URL: postgres://sats:sats@db:5432/sats
+    restart: unless-stopped
+
+  db:
+    image: postgis/postgis:16-3.4
+    profiles: ["db"]
+    environment:
+      POSTGRES_USER: sats
+      POSTGRES_PASSWORD: sats
+      POSTGRES_DB: sats
+    ports: ["5432:5432"]
+    volumes: ["dbdata:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sats -d sats"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  dbdata:
