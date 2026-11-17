@@ -35,5 +35,9 @@
     "onlyBuiltDependencies": [
       "esbuild"
     ]
+  },
+  "dependencies": {
+    "@sats/core": "workspace:*",
+    "@sats/lightning": "workspace:*"
   }
 }

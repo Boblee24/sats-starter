@@ -7,6 +7,13 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@sats/core':
+        specifier: workspace:*
+        version: link:packages/core
+      '@sats/lightning':
+        specifier: workspace:*
+        version: link:packages/lightning
     devDependencies:
       '@types/node':
         specifier: ^24.19.2
