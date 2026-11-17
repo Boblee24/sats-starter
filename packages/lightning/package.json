@@ -5,7 +5,8 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./fake": "./src/fakeWallet.ts"
+    "./fake": "./src/fakeWallet.ts",
+    "./testInvoice": "./src/testInvoice.ts"
   },
   "dependencies": {
     "@sats/core": "workspace:*",

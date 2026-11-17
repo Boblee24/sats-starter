@@ -142,7 +142,11 @@ export async function claim(db: Db, sponsor: Wallet, o: { pubkey: string; bolt11
     });
   } catch (err) {
     // A concurrent insert of the same payment_hash loses on the UNIQUE constraint.
-    if (String((err as { code?: unknown })?.code) === "23505") return { status: "rejected", code: "DUPLICATE_INVOICE" };
+    // Drizzle wraps driver errors; the Postgres code may be on err.cause.
+    const pgCode = (e: unknown) => (e && typeof e === "object" ? String((e as { code?: unknown }).code) : "");
+    if (pgCode(err) === "23505" || pgCode((err as { cause?: unknown })?.cause) === "23505") {
+      return { status: "rejected", code: "DUPLICATE_INVOICE" };
+    }
     throw err;
   }
   if (!reserved.ok) {
@@ -225,5 +229,8 @@ export async function checkSponsor(sponsor: Wallet): Promise<{ ok: boolean; netw
 
 /** Run the payouts DDL (idempotent). */
 export async function migratePayouts(db: Db): Promise<void> {
-  await db.execute(sql.raw(PAYOUTS_SQL));
+  // One statement per call: drivers run execute() as a prepared statement, which allows only one.
+  for (const stmt of PAYOUTS_SQL.split(";").map((s) => s.trim()).filter(Boolean)) {
+    await db.execute(sql.raw(stmt));
+  }
 }
