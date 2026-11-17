@@ -1,0 +1,8 @@
+{
+  "name": "@sats/lightning",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "dependencies": { "@sats/core": "workspace:*", "@getalby/sdk": "^9.0.0", "light-bolt11-decoder": "^3.2.0", "@noble/hashes": "^2.4.0" }
+}

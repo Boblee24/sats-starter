@@ -1,0 +1,8 @@
+{
+  "name": "@sats/payouts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts", "./schema": "./src/schema.ts" },
+  "dependencies": { "@sats/core": "workspace:*", "@sats/lightning": "workspace:*", "drizzle-orm": "^0.45.4", "postgres": "^4.1.1" }
+}

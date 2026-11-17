@@ -1,0 +1,8 @@
+{
+  "name": "@sats/core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts", "./env": "./src/env.ts", "./log": "./src/log.ts", "./rateLimit": "./src/rateLimit.ts", "./fiat": "./src/fiat.ts", "./i18n": "./src/i18n.ts", "./errors": "./src/errors.ts" },
+  "dependencies": { "zod": "^4.6.7" }
+}

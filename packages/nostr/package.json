@@ -1,0 +1,8 @@
+{
+  "name": "@sats/nostr",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts", "./browser": "./src/browser.ts" },
+  "dependencies": { "nostr-tools": "^2.26.1", "idb-keyval": "^6.3.0" }
+}
